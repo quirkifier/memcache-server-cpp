@@ -1,0 +1,3 @@
+/home/sumair/prog/memcache/build/CMakeFiles/memcache.dir
+/home/sumair/prog/memcache/build/CMakeFiles/edit_cache.dir
+/home/sumair/prog/memcache/build/CMakeFiles/rebuild_cache.dir

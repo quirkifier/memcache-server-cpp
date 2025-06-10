@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/sumair/prog/memcache/build",
+  "command": "/usr/bin/c++  -I/home/sumair/prog/memcache/include -g -std=gnu++17 -o CMakeFiles/memcache.dir/src/baseCommand.cpp.o -c /home/sumair/prog/memcache/src/baseCommand.cpp",
+  "file": "/home/sumair/prog/memcache/src/baseCommand.cpp",
+  "output": "CMakeFiles/memcache.dir/src/baseCommand.cpp.o"
+},
+{
+  "directory": "/home/sumair/prog/memcache/build",
+  "command": "/usr/bin/c++  -I/home/sumair/prog/memcache/include -g -std=gnu++17 -o CMakeFiles/memcache.dir/src/main.cpp.o -c /home/sumair/prog/memcache/src/main.cpp",
+  "file": "/home/sumair/prog/memcache/src/main.cpp",
+  "output": "CMakeFiles/memcache.dir/src/main.cpp.o"
+}
+]
