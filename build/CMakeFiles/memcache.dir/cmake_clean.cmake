@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/memcache.dir/src/baseCommand.cpp.o.d"
   "CMakeFiles/memcache.dir/src/main.cpp.o"
   "CMakeFiles/memcache.dir/src/main.cpp.o.d"
+  "CMakeFiles/memcache.dir/src/string.cpp.o"
+  "CMakeFiles/memcache.dir/src/string.cpp.o.d"
   "memcache"
   "memcache.pdb"
 )

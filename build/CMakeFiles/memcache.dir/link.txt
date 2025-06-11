@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/memcache.dir/link.d CMakeFiles/memcache.dir/src/baseCommand.cpp.o CMakeFiles/memcache.dir/src/main.cpp.o -o memcache
+/usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/memcache.dir/link.d CMakeFiles/memcache.dir/src/baseCommand.cpp.o CMakeFiles/memcache.dir/src/main.cpp.o CMakeFiles/memcache.dir/src/string.cpp.o -o memcache

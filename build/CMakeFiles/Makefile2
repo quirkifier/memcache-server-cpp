@@ -85,12 +85,12 @@ clean: CMakeFiles/memcache.dir/clean
 CMakeFiles/memcache.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sumair/prog/memcache/build/CMakeFiles --progress-num=1,2,3 "Built target memcache"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sumair/prog/memcache/build/CMakeFiles --progress-num=1,2,3,4 "Built target memcache"
 .PHONY : CMakeFiles/memcache.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/memcache.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sumair/prog/memcache/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sumair/prog/memcache/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/memcache.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sumair/prog/memcache/build/CMakeFiles 0
 .PHONY : CMakeFiles/memcache.dir/rule
@@ -102,7 +102,7 @@ memcache: CMakeFiles/memcache.dir/rule
 # codegen rule for target.
 CMakeFiles/memcache.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sumair/prog/memcache/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target memcache"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sumair/prog/memcache/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target memcache"
 .PHONY : CMakeFiles/memcache.dir/codegen
 
 # clean rule for target.

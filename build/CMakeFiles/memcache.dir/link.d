@@ -4,6 +4,7 @@ memcache: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtbeginS.o \
   CMakeFiles/memcache.dir/src/baseCommand.cpp.o \
   CMakeFiles/memcache.dir/src/main.cpp.o \
+  CMakeFiles/memcache.dir/src/string.cpp.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libm.so \
@@ -41,6 +42,8 @@ memcache: \
 CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 CMakeFiles/memcache.dir/src/main.cpp.o:
+
+CMakeFiles/memcache.dir/src/string.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libstdc++.so:
 

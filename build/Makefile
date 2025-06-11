@@ -177,6 +177,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/string.o: src/string.cpp.o
+.PHONY : src/string.o
+
+# target to build an object file
+src/string.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/src/string.cpp.o
+.PHONY : src/string.cpp.o
+
+src/string.i: src/string.cpp.i
+.PHONY : src/string.i
+
+# target to preprocess a source file
+src/string.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/src/string.cpp.i
+.PHONY : src/string.cpp.i
+
+src/string.s: src/string.cpp.s
+.PHONY : src/string.s
+
+# target to generate assembly for a file
+src/string.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/memcache.dir/build.make CMakeFiles/memcache.dir/src/string.cpp.s
+.PHONY : src/string.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/string.o"
+	@echo "... src/string.i"
+	@echo "... src/string.s"
 .PHONY : help
 
 
