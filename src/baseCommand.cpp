@@ -1,36 +1,41 @@
-#include"baseCommand.h"
-void getCommand::execute(Hashmap<std::string, std::string>& hashmap) {
-        node<std::string, std::string>* item = hashmap.get(Key);
-        if (item) {
-            result = item->value;
-            std::cout << "GET " << Key << ": " << result << std::endl;
-        } else {
-            std::cout << "GET " << Key << ": Not found" << std::endl;
-        }
-    }
-void updateCommand::execute(Hashmap<std::string, std::string>& hashmap){
-        node<std::string, std::string>* existing = hashmap.get(Key);
-        if (existing) {
-            hashmap.remove(Key);
-            hashmap.add(Key,Value);
-            std::cout<<"Value updated";
-        }else{
-            hashmap.add(Key,Value);
-            std::cout<<"had no existing value";
-        }
-    }
-    
-void deleteCommand::execute(Hashmap<std::string, std::string>& hashmap) {
-        node<std::string, std::string>* existing = hashmap.get(Key);
-        if (existing) {
-            hashmap.remove(Key);
-            success = true;
-            std::cout << "DELETED " << Key << std::endl;
-        } else {
-            success = false;
-            std::cout << "DELETE " << Key << ": Key not found" << std::endl;
-        }
-    }
-    
+#include "baseCommand.h"
+void getCommand::execute(Hashmap<string, string>& hashmap) {
 
+    if (hashmap.contains(Key)) {
+        node<string,string>* sumair = hashmap.get(Key);
+        std::cout << "GET " << Key << " = " << sumair->value << "\n";
+        delete sumair;
+    } else {
+        std::cout << "GET " << Key << " = NOT_FOUND" << "\n";
+    }
+}
+
+void setCommand::execute(Hashmap<string, string>& hashmap) {
+    hashmap.add(Key, Value);
+    std::cout << "SET " << Key << " = " << Value << "\n";
+
+}
+
+void updateCommand::execute(Hashmap<string, string>& hashmap) {
+    if (hashmap.contains(Key)) {
+        hashmap.remove(Key);
+        hashmap.add(Key,Value);
+        success = true;
+        std::cout << "UPDATE " << Key << " = " << Value << "\n";
+    } else {
+        success = false;
+        std::cout << "UPDATE " << Key << " = FAILED (key not found)" << "\n";
+    }
+}
+
+void deleteCommand::execute(Hashmap<string, string>& hashmap) {
+    if (hashmap.contains(Key)) {
+        hashmap.remove(Key);
+        success = true;
+        std::cout << "DELETE " << Key << " = SUCCESS" << "\n";
+    } else {
+        success = false;
+        std::cout << "DELETE " << Key << " = FAILED (key not found)" << "\n";
+    }
+}
 

@@ -1,60 +1,58 @@
 #ifndef BASECOMMAND_H
+
 #define BASECOMMAND_H
 #include "Hashmap.h"
 #include <iostream>
-#include <string> 
+#include "sumairString.h"
 class baseCommand {
 public:
-    virtual void execute(Hashmap<std::string, std::string>& hashmap) = 0;
+    virtual void execute(Hashmap<string, string>& hashmap) = 0;
     baseCommand() = default;
     virtual ~baseCommand() = default;
 };
 
 class getCommand : public baseCommand {
-    std::string Key;
-    std::string result;
+    string Key;
+    string result;
 public:
-    getCommand(std::string key) : Key(key) {}
+    getCommand(string key) : Key(key) {}
     
-    void execute(Hashmap<std::string, std::string>& hashmap) override;
+    void execute(Hashmap<string, string>& hashmap) override;
     
     
-    const std::string& getResult() const { return result; }
+    const string& getResult() const { return result; }
 };
 
 class setCommand : public baseCommand {
-    std::string Key;
-    std::string Value;
+    string Key;
+    string Value;
 public:
-    setCommand(std::string key, std::string value) 
+    setCommand(string key, string value) 
         : Key(key), Value(value) {}
     
-    void execute(Hashmap<std::string, std::string>& hashmap) override {
-        hashmap.add(Key, Value);
-        std::cout << "SET " << Key << " = " << Value << std::endl;
-    }
+  void execute(Hashmap<string, string>& hashmap) override;
 };
 
 class updateCommand : public baseCommand {
-    std::string Key;
-    std::string Value;
+    string Key;
+    string Value;
     bool success;
 public:
-    updateCommand(std::string key, std::string value) 
+    updateCommand(string key, string value) 
         : Key(key), Value(value), success(false) {}
     
-    void execute(Hashmap<std::string, std::string>& hashmap) override;   
+    void execute(Hashmap<string, string>& hashmap) override;   
     
     bool isSuccessful() const { return success; }
 };
 
 class deleteCommand : public baseCommand {
-    std::string Key;
+    string Key;
     bool success;
 public:
-    deleteCommand(std::string key) : Key(key), success(false) {}
+    deleteCommand(string key) : Key(key), success(false) {}
     
-    void execute(Hashmap<std::string, std::string>& hashmap) override;
+    void execute(Hashmap<string, string>& hashmap) override;
     bool isSuccessful() const { return success; }
 };
 

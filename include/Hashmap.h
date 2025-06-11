@@ -3,15 +3,14 @@
 #include "dynamic-array.h"
 #include "linked_list.h"
 #include <cstdint>
-#include <string>
-
+#include "sumairString.h"
 template<typename Key>
 inline int64_t hash(Key);
 
 template<>
-inline int64_t hash(std::string hash) {
+inline int64_t hash(string hash) {
     int64_t total_sum = 0;
-    for (int i = 0; i < hash.size(); i++) {
+    for (int i = 0; i < hash.length();i++) {
         total_sum += hash[i];
     }
     return total_sum;
@@ -31,6 +30,7 @@ public:
         int64_t hashed = hash(key) % capacity;
         buckets[hashed].insert(key, value);
         count++;
+        std::cout<<key<<" "<<value<<"\n";
     }
 
     bool remove(Key key) {
@@ -41,7 +41,12 @@ public:
         }
         return false;
     }
-
+    bool contains(Key key){
+        int64_t hashed = hash(key) % capacity;
+        if(buckets[hashed].find(key)){
+            return true;
+        }
+    }
     node<Key, Value>* get(Key key) {
         int64_t hashed = hash(key) % capacity;
         return buckets[hashed].find(key);
