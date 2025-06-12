@@ -219,7 +219,6 @@ public:
             cap = len;
         }
     }
-    
     void reverse() {
         for (int i = 0; i < len / 2; i++) {
             std::swap(arr[i], arr[len - 1 - i]);

@@ -6,6 +6,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /home/sumair/prog/memcache/include/baseCommand.h \
   /home/sumair/prog/memcache/include/dynamic-array.h \
   /home/sumair/prog/memcache/include/linked_list.h \
+  /home/sumair/prog/memcache/include/logger.h \
   /home/sumair/prog/memcache/include/sumairString.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -90,6 +91,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /usr/include/c++/15.1.1/bits/basic_string.tcc \
   /usr/include/c++/15.1.1/bits/char_traits.h \
   /usr/include/c++/15.1.1/bits/charconv.h \
+  /usr/include/c++/15.1.1/bits/codecvt.h \
   /usr/include/c++/15.1.1/bits/concept_check.h \
   /usr/include/c++/15.1.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.1.1/bits/cxxabi_forced.h \
@@ -97,6 +99,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /usr/include/c++/15.1.1/bits/exception.h \
   /usr/include/c++/15.1.1/bits/exception_defines.h \
   /usr/include/c++/15.1.1/bits/exception_ptr.h \
+  /usr/include/c++/15.1.1/bits/fstream.tcc \
   /usr/include/c++/15.1.1/bits/functexcept.h \
   /usr/include/c++/15.1.1/bits/functional_hash.h \
   /usr/include/c++/15.1.1/bits/hash_bytes.h \
@@ -147,6 +150,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /usr/include/c++/15.1.1/cstdint \
   /usr/include/c++/15.1.1/cstdio \
   /usr/include/c++/15.1.1/cstdlib \
+  /usr/include/c++/15.1.1/ctime \
   /usr/include/c++/15.1.1/cwchar \
   /usr/include/c++/15.1.1/cwctype \
   /usr/include/c++/15.1.1/debug/assertions.h \
@@ -157,6 +161,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /usr/include/c++/15.1.1/ext/numeric_traits.h \
   /usr/include/c++/15.1.1/ext/string_conversions.h \
   /usr/include/c++/15.1.1/ext/type_traits.h \
+  /usr/include/c++/15.1.1/fstream \
   /usr/include/c++/15.1.1/initializer_list \
   /usr/include/c++/15.1.1/ios \
   /usr/include/c++/15.1.1/iosfwd \
@@ -175,8 +180,10 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
   /usr/include/c++/15.1.1/typeinfo \
   /usr/include/c++/15.1.1/utility \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++locale.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/ctype_base.h \
@@ -218,10 +225,12 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
 CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp \
   /home/sumair/prog/memcache/include/Hashmap.h \
   /home/sumair/prog/memcache/include/baseCommand.h \
+  /home/sumair/prog/memcache/include/binary_file_handler.h \
   /home/sumair/prog/memcache/include/cachestore.h \
   /home/sumair/prog/memcache/include/command_processor.h \
   /home/sumair/prog/memcache/include/dynamic-array.h \
   /home/sumair/prog/memcache/include/linked_list.h \
+  /home/sumair/prog/memcache/include/logger.h \
   /home/sumair/prog/memcache/include/protocolParser.h \
   /home/sumair/prog/memcache/include/sumairString.h \
   /usr/include/alloca.h \
@@ -307,6 +316,7 @@ CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp 
   /usr/include/c++/15.1.1/bits/basic_string.tcc \
   /usr/include/c++/15.1.1/bits/char_traits.h \
   /usr/include/c++/15.1.1/bits/charconv.h \
+  /usr/include/c++/15.1.1/bits/codecvt.h \
   /usr/include/c++/15.1.1/bits/concept_check.h \
   /usr/include/c++/15.1.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.1.1/bits/cxxabi_forced.h \
@@ -314,6 +324,7 @@ CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp 
   /usr/include/c++/15.1.1/bits/exception.h \
   /usr/include/c++/15.1.1/bits/exception_defines.h \
   /usr/include/c++/15.1.1/bits/exception_ptr.h \
+  /usr/include/c++/15.1.1/bits/fstream.tcc \
   /usr/include/c++/15.1.1/bits/functexcept.h \
   /usr/include/c++/15.1.1/bits/functional_hash.h \
   /usr/include/c++/15.1.1/bits/hash_bytes.h \
@@ -364,6 +375,7 @@ CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp 
   /usr/include/c++/15.1.1/cstdint \
   /usr/include/c++/15.1.1/cstdio \
   /usr/include/c++/15.1.1/cstdlib \
+  /usr/include/c++/15.1.1/ctime \
   /usr/include/c++/15.1.1/cwchar \
   /usr/include/c++/15.1.1/cwctype \
   /usr/include/c++/15.1.1/debug/assertions.h \
@@ -374,6 +386,7 @@ CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp 
   /usr/include/c++/15.1.1/ext/numeric_traits.h \
   /usr/include/c++/15.1.1/ext/string_conversions.h \
   /usr/include/c++/15.1.1/ext/type_traits.h \
+  /usr/include/c++/15.1.1/fstream \
   /usr/include/c++/15.1.1/initializer_list \
   /usr/include/c++/15.1.1/ios \
   /usr/include/c++/15.1.1/iosfwd \
@@ -392,8 +405,10 @@ CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp 
   /usr/include/c++/15.1.1/typeinfo \
   /usr/include/c++/15.1.1/utility \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++locale.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/ctype_base.h \
@@ -694,8 +709,6 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 
 /usr/include/pthread.h:
 
-/usr/include/locale.h:
-
 /usr/include/linux/types.h:
 
 /usr/include/linux/sched/types.h:
@@ -722,6 +735,10 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 
 /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h:
 
+/usr/include/locale.h:
+
+/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/basic_file.h:
+
 /usr/include/c++/15.1.1/typeinfo:
 
 /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++config.h:
@@ -739,6 +756,8 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 /usr/include/c++/15.1.1/ios:
 
 /usr/include/c++/15.1.1/initializer_list:
+
+/usr/include/c++/15.1.1/fstream:
 
 /usr/include/c++/15.1.1/ext/string_conversions.h:
 
@@ -792,11 +811,13 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 
 /usr/include/bits/types/FILE.h:
 
-/home/sumair/prog/memcache/include/cachestore.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/include/stdarg.h:
 
-/usr/include/bits/types/error_t.h:
+/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++io.h:
 
-/usr/include/bits/stdint-intn.h:
+/usr/include/c++/15.1.1/bits/stl_iterator.h:
+
+/usr/include/bits/endian.h:
 
 /usr/include/bits/thread-shared-types.h:
 
@@ -818,6 +839,12 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 
 /usr/include/c++/15.1.1/bits/exception_ptr.h:
 
+/usr/include/bits/stdint-intn.h:
+
+/home/sumair/prog/memcache/include/cachestore.h:
+
+/usr/include/bits/types/error_t.h:
+
 /usr/include/bits/setjmp.h:
 
 /usr/include/bits/types/struct___jmp_buf_tag.h:
@@ -830,15 +857,27 @@ CMakeFiles/memcache.dir/src/main.cpp.o:
 
 /usr/include/bits/types/__fpos64_t.h:
 
-/usr/include/c++/15.1.1/cwchar:
-
-/usr/include/bits/select.h:
-
 /usr/include/c++/15.1.1/ext/atomicity.h:
 
 /usr/include/bits/pthreadtypes.h:
 
+/usr/include/gnu/stubs.h:
+
+/usr/include/c++/15.1.1/bits/stl_function.h:
+
+/usr/include/bits/pthreadtypes-arch.h:
+
 /usr/include/bits/pthread_stack_min-dynamic.h:
+
+/home/sumair/prog/memcache/include/binary_file_handler.h:
+
+/usr/include/bits/long-double.h:
+
+/usr/include/c++/15.1.1/cwchar:
+
+/usr/include/bits/select.h:
+
+/home/sumair/prog/memcache/include/logger.h:
 
 /usr/include/asm-generic/errno.h:
 
@@ -886,10 +925,6 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 /usr/include/c++/15.1.1/bits/invoke.h:
 
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/asm-generic/types.h:
-
 /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/error_constants.h:
 
 /usr/include/asm/bitsperlong.h:
@@ -919,6 +954,10 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /home/sumair/prog/memcache/include/linked_list.h:
 
 /usr/include/bits/floatn.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/asm-generic/types.h:
 
 /usr/include/asm/posix_types.h:
 
@@ -950,8 +989,6 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 /usr/include/bits/typesizes.h:
 
-/usr/include/bits/long-double.h:
-
 /usr/include/features.h:
 
 /usr/include/bits/endianness.h:
@@ -967,6 +1004,10 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /usr/include/c++/15.1.1/bits/streambuf.tcc:
 
 /usr/include/c++/15.1.1/bits/locale_facets.h:
+
+/usr/include/c++/15.1.1/bits/stl_iterator_base_funcs.h:
+
+/usr/include/bits/floatn-common.h:
 
 /usr/include/c++/15.1.1/bits/locale_classes.tcc:
 
@@ -998,12 +1039,6 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 /usr/include/bits/waitflags.h:
 
-/usr/include/gnu/stubs.h:
-
-/usr/include/bits/pthreadtypes-arch.h:
-
-/usr/include/c++/15.1.1/bits/stl_function.h:
-
 /usr/include/c++/15.1.1/clocale:
 
 /usr/include/c++/15.1.1/cerrno:
@@ -1029,6 +1064,8 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /usr/include/bits/types/wint_t.h:
 
 /usr/include/c++/15.1.1/ostream:
+
+/usr/include/c++/15.1.1/ctime:
 
 /usr/include/c++/15.1.1/bits/predefined_ops.h:
 
@@ -1060,6 +1097,8 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 /usr/include/c++/15.1.1/bits/char_traits.h:
 
+/usr/include/c++/15.1.1/bits/fstream.tcc:
+
 /usr/include/c++/15.1.1/bits/concept_check.h:
 
 /usr/include/c++/15.1.1/bits/charconv.h:
@@ -1073,6 +1112,8 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /usr/include/c++/15.1.1/bits/cxxabi_init_exception.h:
 
 CMakeFiles/memcache.dir/src/string.cpp.o:
+
+/usr/include/c++/15.1.1/bits/codecvt.h:
 
 /usr/include/c++/15.1.1/bits/nested_exception.h:
 
@@ -1119,13 +1160,3 @@ CMakeFiles/memcache.dir/src/string.cpp.o:
 /usr/include/c++/15.1.1/bits/streambuf_iterator.h:
 
 /usr/include/c++/15.1.1/bits/std_abs.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/include/stdarg.h:
-
-/usr/include/bits/endian.h:
-
-/usr/include/c++/15.1.1/bits/stl_iterator.h:
-
-/usr/include/bits/floatn-common.h:
-
-/usr/include/c++/15.1.1/bits/stl_iterator_base_funcs.h:

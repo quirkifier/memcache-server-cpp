@@ -2,24 +2,25 @@
 void getCommand::execute(Hashmap<string, string>& hashmap) {
 
     if (hashmap.contains(Key)) {
-        node<string,string>* sumair = hashmap.get(Key);
-        std::cout << "GET " << Key << " = " << sumair->value << "\n";
-        delete sumair;
+        string sumair = hashmap.get(Key);
+        std::cout << "GET " << Key << " = " << sumair<< "\n";
     } else {
         std::cout << "GET " << Key << " = NOT_FOUND" << "\n";
     }
 }
 
 void setCommand::execute(Hashmap<string, string>& hashmap) {
-    hashmap.add(Key, Value);
-    std::cout << "SET " << Key << " = " << Value << "\n";
-
+    if (hashmap.contains(Key)) {
+        std::cout<<"Cannot set this value as it already contain stuff\n";
+    }else {
+        hashmap.add(Key,Value);
+        std::cout << "SET " << Key << " = "<< Value << "\n";
+    }
 }
 
 void updateCommand::execute(Hashmap<string, string>& hashmap) {
     if (hashmap.contains(Key)) {
-        hashmap.remove(Key);
-        hashmap.add(Key,Value);
+        hashmap.update(Key,Value);
         success = true;
         std::cout << "UPDATE " << Key << " = " << Value << "\n";
     } else {

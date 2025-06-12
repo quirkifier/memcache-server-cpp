@@ -2,7 +2,6 @@
 
 #define BASECOMMAND_H
 #include "Hashmap.h"
-#include <iostream>
 #include "sumairString.h"
 class baseCommand {
 public:

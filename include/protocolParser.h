@@ -50,7 +50,6 @@ public:
         int i = 0;
         
         while (i < len) {
-            // Skip spaces
             while (i < len && input[i] == ' ') {
                 i++;
             }
@@ -59,16 +58,14 @@ public:
             
             string token;
             
-            // Check if token starts with quote
             if (input[i] == '"') {
-                i++; // Skip opening quote
+                i++;
                 while (i < len && input[i] != '"') {
                     token += input[i];
                     i++;
                 }
-                if (i < len) i++; // Skip closing quote
+                if (i < len) i++; 
             } else {
-                // Regular token
                 while (i < len && input[i] != ' ') {
                     token += input[i];
                     i++;

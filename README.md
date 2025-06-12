@@ -18,7 +18,7 @@ It includes:
 
 ## 🧱 System Architecture
 
-![System Architecture](sys_diagram.png)
+![System Architecture](assets/sys_diagram.png)
 
 > 🔹 Note: The **Quantum HashMap** is just the name of my custom-built hashmap
 
@@ -26,13 +26,13 @@ It includes:
 
 ## 🧭 Analysis Diagram (Flowchart)
 
-![Flow Chart](flow_chart.png)
+![Flow Chart](assets/flow_chart.png)
 
 ---
 
 ## 🔧 UML Class Diagram
 
-![UML Diagram](memcache_uml.png)
+![UML Diagram](assets/memcache_uml.png)
 > 🔹 Note: Might change a little bit during the implementation phase
 # Networking
 For networking, the system uses a Telnet-compatible interface to allow clients to connect and issue commands in real time. The server is designed to handle multiple concurrent client connections using std::thread, with each thread responsible for processing incoming requests from a separate client.

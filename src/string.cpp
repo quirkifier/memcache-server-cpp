@@ -1,9 +1,7 @@
-#include "sumairString.h" // Include your header file
-#include <cctype>
+#include "sumairString.h"
 #include <stdexcept>
 #include <iostream>
 
-// Helper function to get string length
 int string::get_size(const char* s) const {
     if (s == nullptr) return 0;
     int i = 0;
@@ -12,7 +10,9 @@ int string::get_size(const char* s) const {
     }
     return i;
 }
-
+const char* string::isdata() const{
+    return str;
+}
 // Default constructor
 string::string() {
     len = 0;
@@ -21,7 +21,6 @@ string::string() {
     str[0] = '\0';
 }
 
-// Constructor with char* and length
 string::string(const char* s, int n) {
     if (s == nullptr) {
         cap = 50;
@@ -40,7 +39,6 @@ string::string(const char* s, int n) {
     str[len] = '\0';
 }
 
-// Copy constructor
 string::string(const string &s) {
     if (s.str == nullptr) {
         cap = 0;
@@ -57,7 +55,6 @@ string::string(const string &s) {
     }
 }
 
-// Constructor from char*
 string::string(const char* s) {
     if (s == nullptr) {
         cap = 50;
@@ -79,12 +76,10 @@ string::string(const char* s) {
     str[len] = '\0';
 }
 
-// Constructor from int
 string::string(int n) {
     *this = itos(n);
 }
 
-// Destructor
 string::~string() {
     delete[] str;
 }
@@ -118,7 +113,6 @@ string& string::operator=(const string& s) {
     return *this;
 }
 
-// Output operator
 std::ostream& operator<<(std::ostream& os, const string& s) {
     os << s.str;
     return os;
@@ -127,7 +121,6 @@ std::ostream& operator<<(std::ostream& os, const string& s) {
 bool string::isempty(){
     return get_size(str)==0;
 }
-// Input operator
 std::istream& operator>>(std::istream& in, string& s) {
     char buffer[1024];
     in >> buffer;
@@ -135,7 +128,6 @@ std::istream& operator>>(std::istream& in, string& s) {
     return in;
 }
 
-// Concatenation
 string string::operator+(const string& s) const {
     string result;
     result.len = len + s.len;
@@ -152,7 +144,6 @@ string string::operator+(const string& s) const {
     return result;
 }
 
-// Compound concatenation
 string& string::operator+=(const string& s) {
     int newLen = len + s.len;
     if (newLen >= cap) {
@@ -173,7 +164,6 @@ string& string::operator+=(const string& s) {
     return *this;
 }
 
-// Equality comparison
 bool string::operator==(const string& m) {
     if (m.len != len) {
         return false;
@@ -186,7 +176,6 @@ bool string::operator==(const string& m) {
     return true;
 }
 
-// Character access
 const char string::operator[](int i) const {
     if (i < 0 || i >= len) {
         throw std::out_of_range("Index out of bounds");
@@ -194,7 +183,6 @@ const char string::operator[](int i) const {
     return str[i];
 }
 
-// Character access (mutable)
 char& string::operator[](int i) {
     if (i < 0 || i >= len) {
         throw std::out_of_range("Index out of bounds");
@@ -202,7 +190,6 @@ char& string::operator[](int i) {
     return str[i];
 }
 
-// Integer to string conversion
 string string::itos(int n) {
     if (n == 0) {
         string s("0");
@@ -227,7 +214,6 @@ string string::itos(int n) {
     }
     buffer[i] = '\0';
     
-    // Reverse the buffer
     for (int j = 0; j < i / 2; j++) {
         char temp = buffer[j];
         buffer[j] = buffer[i - j - 1];
@@ -237,7 +223,6 @@ string string::itos(int n) {
     return string(buffer);
 }
 
-// Insert character
 string string::insert_char(int n, char ch) {
     if (n < 0 || n > len) {
         throw std::out_of_range("Position out of range");
@@ -262,7 +247,6 @@ string string::insert_char(int n, char ch) {
     return *this;
 }
 
-// Insert string
 string string::insert_string(int n, const string& sub) {
     if (n < 0 || n > len) {
         throw std::out_of_range("Position out of range");
@@ -273,17 +257,14 @@ string string::insert_string(int n, const string& sub) {
         cap = newLen * 2 + 1;
         char* newStr = new char[cap];
         
-        // Copy prefix
         for (int i = 0; i < n; i++) {
             newStr[i] = str[i];
         }
         
-        // Insert substring
         for (int i = 0; i < sub.len; i++) {
             newStr[n + i] = sub.str[i];
         }
         
-        // Copy suffix
         for (int i = n; i < len; i++) {
             newStr[i + sub.len] = str[i];
         }
@@ -293,12 +274,10 @@ string string::insert_string(int n, const string& sub) {
         len = newLen;
         str[len] = '\0';
     } else {
-        // Shift existing characters
         for (int i = len - 1; i >= n; i--) {
             str[i + sub.len] = str[i];
         }
         
-        // Insert new string
         for (int i = 0; i < sub.len; i++) {
             str[n + i] = sub.str[i];
         }
@@ -310,14 +289,12 @@ string string::insert_string(int n, const string& sub) {
     return *this;
 }
 
-// Replace first character
 string& string::replace_first(char ch) {
     if (len > 0)
         str[0] = ch;
     return *this;
 }
 
-// Convert to uppercase
 void string::to_upper() {
     for (int i = 0; i < len; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
@@ -326,7 +303,6 @@ void string::to_upper() {
     }
 }
 
-// Convert to lowercase
 void string::to_lower() {
     for (int i = 0; i < len; i++) {
         if (str[i] >= 'A' && str[i] <= 'Z') {
@@ -335,7 +311,6 @@ void string::to_lower() {
     }
 }
 
-// Trim whitespace
 string& string::trim() {
     int start = 0;
     int end = len - 1;
@@ -354,7 +329,6 @@ string& string::trim() {
     return *this;
 }
 
-// String to integer
 int string::stoi() const {
     int i = 0;
     int num = 0;
@@ -373,12 +347,10 @@ int string::stoi() const {
     return isNeg ? -num : num;
 }
 
-// Display string
 void string::display() const {
     std::cout << str;
 }
 
-// Check equality
 bool string::is_equal(const string& m) const {
     if (m.len != len) {
         return false;
@@ -391,7 +363,6 @@ bool string::is_equal(const string& m) const {
     return true;
 }
 
-// Check less than
 bool string::is_less(const string& m) const {
     int min_len = (len < m.len) ? len : m.len;
     for (int i = 0; i < min_len; i++) {
@@ -405,7 +376,6 @@ bool string::is_less(const string& m) const {
     return len < m.len;
 }
 
-// Check greater than
 bool string::is_greater(const string& m) const {
     int min_len = (len < m.len) ? len : m.len;
     for (int i = 0; i < min_len; i++) {
@@ -419,19 +389,16 @@ bool string::is_greater(const string& m) const {
     return len > m.len;
 }
 
-// Concatenate strings
 string string::concat(const string& s) const {
     return *this + s;
 }
 
-// Get lowercase version
 string string::lower() const {
     string copy(*this);
     copy.to_lower();
     return copy;
 }
 
-// Split by delimiter
 string* string::split(char delimiter, int &count) const {
     count = 1;
     for (int i = 0; i < len; i++) {
@@ -456,7 +423,6 @@ string* string::split(char delimiter, int &count) const {
     return splitArr;
 }
 
-// Split by multiple delimiters
 string* string::split(const string& delimiters, int &count) const {
     count = 1;
     for (int i = 0; i < len; i++) {
@@ -494,7 +460,6 @@ string* string::split(const string& delimiters, int &count) const {
     return splitArr;
 }
 
-// Remove character at position
 void string::remove_char(int n) {
     if (n < 0 || n >= len) return;
     
@@ -505,7 +470,6 @@ void string::remove_char(int n) {
     str[len] = '\0';
 }
 
-// Remove first occurrence of character
 void string::remove_first(char ch) {
     int first = find_first(ch);
     if (first != -1) {
@@ -513,7 +477,6 @@ void string::remove_first(char ch) {
     }
 }
 
-// Remove last occurrence of character
 void string::remove_last(char ch) {
     int last = find_last(ch);
     if (last != -1) {
@@ -521,7 +484,6 @@ void string::remove_last(char ch) {
     }
 }
 
-// Remove all occurrences of character
 void string::remove_all(char a) {
     int newLen = 0;
     for (int i = 0; i < len; i++) {
@@ -533,7 +495,6 @@ void string::remove_all(char a) {
     str[len] = '\0';
 }
 
-// Find all substrings
 int* string::all_sub_string(const string& sub, int &count) const {
     int* temp = new int[len];
     count = 0;
@@ -552,7 +513,6 @@ int* string::all_sub_string(const string& sub, int &count) const {
     return temp;
 }
 
-// Find first occurrence of character
 int string::find_first(char ch) const {
     for (int i = 0; i < len; i++) {
         if (str[i] == ch) {
@@ -562,7 +522,6 @@ int string::find_first(char ch) const {
     return -1;
 }
 
-// Find last occurrence of character
 int string::find_last(char ch) const {
     for (int i = len - 1; i >= 0; i--) {
         if (str[i] == ch) {
@@ -572,7 +531,6 @@ int string::find_last(char ch) const {
     return -1;
 }
 
-// Find all occurrences of character
 int* string::find_all(char ch, int &count) const {
     int* temp = new int[len];
     count = 0;
@@ -584,7 +542,6 @@ int* string::find_all(char ch, int &count) const {
     return temp;
 }
 
-// Increase capacity
 string string::regrow() {
     int newCap = cap * 2;
     char* newStr = new char[newCap];
@@ -601,12 +558,10 @@ string string::regrow() {
     return *this;
 }
 
-// Get string length
 int string::length() const {
     return len;
 }
 
-// Clear string
 void string::clear() {
     len = 0;
     if (str != nullptr) {

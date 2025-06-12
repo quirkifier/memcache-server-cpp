@@ -63,9 +63,9 @@
 			},
 			"sourceIndexes" : 
 			[
-				8,
-				9,
-				10
+				10,
+				11,
+				12
 			]
 		}
 	],
@@ -101,16 +101,18 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8,
+				9
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				8,
-				9,
-				10
+				10,
+				11,
+				12
 			]
 		}
 	],
@@ -124,6 +126,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/baseCommand.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/binary_file_handler.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -144,6 +151,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/linked_list.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/logger.h",
 			"sourceGroupIndex" : 0
 		},
 		{

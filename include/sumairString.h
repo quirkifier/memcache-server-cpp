@@ -35,6 +35,7 @@ public:
     string& trim();
     int stoi() const;
     bool isempty();
+    const char* isdata() const;
     void display() const;
     string lower() const;  // Returns a lowercased copy of the string
     ~string();
