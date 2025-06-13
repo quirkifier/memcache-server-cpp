@@ -23,27 +23,12 @@ public:
         , handler(filename)
     {
         if (handler.file_exists()) {
-            string raw = handler.read_string();
-            if (!raw.isempty()) {
-                int sep = raw.find_first(' ');
-                if (sep >= 0) {
-                    string key = raw.substr(0, sep);
-                    string value = raw.substr(sep + 1, raw.length() - sep - 1);
-                    store.add(key, value);
-                    key_store.push(key);
-                    count++;
-                }
-            }
+            handler.load_all(key_store,store);
         }
     }
 
     ~CacheStore() {
-        
-    }
-    void dump_to_file(){
-        for(int i = 0;i<key_store.size();i++){
-            handler.save_from_hashmap(store,key_store[i]);
-        }
+        handler.save_all(key_store, store);
     }
     string get(const string& key) {
         getCommand* cmd = new getCommand(key);
@@ -75,7 +60,17 @@ public:
         cmd->execute(store);
         bool success = cmd->isSuccessful();
         delete cmd;
+            for (int i = 0; i < key_store.size(); i++) {
+            if (key_store[i] == key) {
+                for (int j = i; j < key_store.size() - 1; j++) {
+                    key_store[j] = key_store[j + 1];
+                }
+                key_store.pop(); 
+                break;
+            }
+        }
         return success;
+
     }
 
     const Dynamic_array<string>& keys() const { return key_store; }

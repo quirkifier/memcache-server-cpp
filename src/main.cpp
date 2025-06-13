@@ -4,6 +4,5 @@ int main() {
     std::cout << "Cache Store initialized with capacity: 1000\n";
     CommandProcessor processor(cache);
     processor.run();
-    cache.dump_to_file();
     return 0;
 }

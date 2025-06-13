@@ -6,95 +6,64 @@
 #include "sumairString.h"
 #include "Hashmap.h"
 
+
 template<typename Key, typename Value>
 class BinaryFileHandler {
 public:
     string filename;
     BinaryFileHandler(const string& file) : filename(file) {}
-
     bool file_exists() {
-        std::ifstream file_stream(filename.isdata(), std::ios::binary);
-        return file_stream.good();
+        std::ifstream file(filename.isdata());
+        return file.good();
     }
-
-    string read_string() {
-        std::ifstream file_stream(filename.isdata(), std::ios::binary);
-        if (!file_stream.is_open()) {
-            std::cerr << "Error: Could not open file " << filename << " for reading\n";
-            return string();
+    bool save_all(const Dynamic_array<Key>& keys, Hashmap<Key, Value>& store) {
+        std::ofstream file(filename.isdata(), std::ios::binary);
+        int count = keys.size();
+        file.write((char*)(&count), sizeof(count));
+        for (int i = 0; i < keys.size(); i++) {
+            Key key = keys[i];
+            Value value = store.get(key);
+            
+            string key_str = key;
+            string value_str = value;
+            
+            int key_len = key_str.length();
+            file.write(reinterpret_cast<const char*>(&key_len), sizeof(key_len));
+            file.write(key_str.isdata(), key_len);
+            
+            int value_len = value_str.length();
+            file.write(reinterpret_cast<const char*>(&value_len), sizeof(value_len));
+            file.write(value_str.isdata(), value_len);
         }
-
-        size_t length{};
-        file_stream.read(reinterpret_cast<char*>(&length), sizeof(length));
-        if (file_stream.fail()) {
-            std::cerr << "Error: Could not read string length\n";
-            return string();
-        }
-
-        char* buffer = new char[length + 1];
-        file_stream.read(buffer, length);
-        buffer[length] = '\0';
-        if (file_stream.fail()) {
-            std::cerr << "Error: Could not read string data\n";
-            delete[] buffer;
-            return string();
-        }
-        file_stream.close();
-
-        string result(buffer);
-        delete[] buffer;
-        return result;
-    }
-
-    bool save_string(const string& data) {
-        std::ofstream file_stream(filename.isdata(), std::ios::binary);
-        if (!file_stream.is_open()) {
-            std::cerr << "Error: Could not open file " << filename << " for writing\n";
-            return false;
-        }
-
-        size_t length = data.length();
-        file_stream.write(reinterpret_cast<const char*>(&length), sizeof(length));
-        file_stream.write(data.isdata(), length);
-        if (file_stream.fail()) {
-            std::cerr << "Error: Could not write to file\n";
-            file_stream.close();
-            return false;
-        }
-        file_stream.close();
-        std::cout << "Saved custom string to binary: " << data << "\n";
+        
+        file.close();
+        std::cout << "Saved " << count << " entries to binary file\n";
         return true;
     }
-
-    bool save_from_hashmap(Hashmap<Key, Value>& hashmap, const Key& key) {
-        if (!hashmap.contains(key)) {
-            std::cerr << "Error: Key '" << key << "' not found in hashmap\n";
-            return false;
+    
+    bool load_all(Dynamic_array<Key>& keys, Hashmap<Key, Value>& store) {
+        std::ifstream file(filename.isdata(), std::ios::binary);
+        int count = 0;
+        file.read((char*)(&count), sizeof(count));
+        for (int i = 0; i < count; i++) {
+            int key_len = 0;
+            file.read((char*)(&key_len), sizeof(key_len));
+            char* key_buffer = new char[key_len + 1];
+            file.read(key_buffer, key_len);
+            key_buffer[key_len] = '\0';
+            Key key = Key(key_buffer);
+            delete[] key_buffer;
+            int value_len = 0;
+            file.read((char*)(&value_len), sizeof(value_len));
+            char* value_buffer = new char[value_len + 1];
+            file.read(value_buffer, value_len);
+            value_buffer[value_len] = '\0';
+            Value value = Value(value_buffer);
+            delete[] value_buffer;
+            store.add(key, value);
+            keys.push(key);
         }
-        Value value = hashmap.get(key);
-        string data = key.concat(string(" ")).concat(value);
-        return save_string(data);
-    }
-
-    bool load_to_hashmap(Hashmap<Key, Value>& hashmap) {
-        if (!file_exists()) {
-            std::cerr << "Error: File '" << filename << "' does not exist\n";
-            return false;
-        }
-
-        string raw = read_string();
-        if (raw.isempty()) return false;
-
-        int sep = raw.find_first(' ');
-        if (sep < 0) {
-            std::cerr << "Error: Invalid format in file. Expected 'key value'\n";
-            return false;
-        }
-
-        Key key = raw.substr(0, sep);
-        Value value = raw.substr(sep + 1, raw.length() - sep - 1);
-        hashmap.add(key, value);
-        std::cout << "Loaded from binary: " << key << " = " << value << "\n";
+        file.close();
         return true;
     }
 };
