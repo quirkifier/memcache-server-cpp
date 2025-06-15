@@ -34,6 +34,8 @@ public:
         getCommand* cmd = new getCommand(key);
         cmd->execute(store);
         string result = cmd->getResult();
+        std::cout<<cmd->getResult()<<"JUST checking\n";
+
         delete cmd;
         return result;
     }

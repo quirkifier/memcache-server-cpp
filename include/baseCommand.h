@@ -18,13 +18,13 @@ public:
     
     void execute(Hashmap<string, string>& hashmap) override;
     
-    
     const string& getResult() const { return result; }
 };
 
 class setCommand : public baseCommand {
     string Key;
     string Value;
+    bool success;
 public:
     setCommand(string key, string value) 
         : Key(key), Value(value) {}

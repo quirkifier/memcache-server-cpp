@@ -21,7 +21,8 @@ public:
     string& operator+=(const string& s);
     string& operator=(const string& s);
     string& operator=(const std::string& s);
-    bool operator==(const string& s);
+    bool operator==(const string& s) const;
+    bool operator==(const char* s) const;
     const char operator[](int i) const;
     char & operator[](int i );
     //utility functions

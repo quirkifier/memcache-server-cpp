@@ -4,8 +4,10 @@ void getCommand::execute(Hashmap<string, string>& hashmap) {
     if (hashmap.contains(Key)) {
         string sumair = hashmap.get(Key);
         std::cout << "GET " << Key << " = " << sumair<< "\n";
+        result = sumair;
     } else {
-        std::cout << "GET " << Key << " = NOT_FOUND" << "\n";
+        std::string sumair2= "Value not found";
+        result = sumair2;
     }
 }
 

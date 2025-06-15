@@ -38,6 +38,15 @@ string::string(const char* s, int n) {
     }
     str[len] = '\0';
 }
+bool string::operator==(const char* other) const {
+    int i = 0;
+    while (other[i] && i < this->length()) {
+        if (str[i] != other[i]) return false;
+        i++;
+    }
+    return i == this->length() && other[i] == '\0';
+}
+
 
 string::string(const string &s) {
     if (s.str == nullptr) {
@@ -164,7 +173,7 @@ string& string::operator+=(const string& s) {
     return *this;
 }
 
-bool string::operator==(const string& m) {
+bool string::operator==(const string& m) const {
     if (m.len != len) {
         return false;
     }
