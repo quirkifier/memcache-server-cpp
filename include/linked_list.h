@@ -1,4 +1,7 @@
 template <typename Key, typename Value> 
+/*
+*@brief A linked list node which keep on pointing to the next value until nullptr
+* */
 struct node {
     Key key;
     Value value;
@@ -8,11 +11,22 @@ struct node {
 };
 
 template <typename Key, typename Value> 
+/*
+*
+* @class LinkedList
+* @brief A basic implementation of a linked list soley made for hashmap but does include a copyconstructor and a overloaded operator 
+*
+*/
 class LinkedList {
     node<Key, Value> *head;
 public:
     LinkedList() : head(nullptr) {}
-    
+    /*
+    *
+    * @brief copy constructor of a linked list
+    *
+    *
+    */
     LinkedList(const LinkedList& other) : head(nullptr) {
         node<Key, Value>* current = other.head;
         node<Key, Value>* tail = nullptr;
@@ -50,12 +64,20 @@ public:
         }
         return *this;
     }
-    
+    /*
+    *
+    *@brief pushes a newnode inside the linked list
+    */
     void insert(const Key &key, const Value &value) {
         node<Key, Value> *cur = new node<Key, Value>(key, value);
         cur->next = head;
         head = cur;
     }
+    /*
+    *
+    *@brief finds the key that needs to be removed then makes the previous node next value attached to the deleted key next value
+    *
+    */
     
     bool remove(const Key &key) {
         node<Key, Value> *current = head;
@@ -75,6 +97,12 @@ public:
         }
         return false;
     }
+    /*
+    *
+    * @brief finds the key inside a node also the gets the value by passing by reference
+    *
+    *
+    */
     
     bool find(const Key &key, Value& result) const {
         node<Key, Value> *current = head;
@@ -87,7 +115,8 @@ public:
         }
         return false;
     }
-    
+
+
     const Value* find_ptr(const Key &key) const {
         node<Key, Value> *current = head;
         while (current) {
