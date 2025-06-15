@@ -141,6 +141,7 @@ string string::operator+(const string& s) const {
     string result;
     result.len = len + s.len;
     result.cap = result.len + 1;
+    delete[] result.str;
     result.str = new char[result.cap];
     
     for (int i = 0; i < len; i++) {
@@ -590,6 +591,7 @@ string string::substr(int start, int length) const {
     string result;
     result.len = length;
     result.cap = length + 1;
+    delete[] result.str;
     result.str = new char[result.cap];
     
     for (int i = 0; i < length; i++) {

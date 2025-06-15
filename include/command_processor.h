@@ -2,10 +2,11 @@
 #define COMMAND_PROCESSOR
 #include "protocolParser.h"
 #include "cachestore.h"
-#include  <unistd.h>
+#include <unistd.h>
 #include <netinet/in.h>
 #include <cstring>
-
+#include <mutex>
+#include <thread>
 int read_from_socket(int sock, char* buf, int size) {
     int bytes = recv(sock, buf, size - 1, 0);
     if (bytes <= 0) {
@@ -23,8 +24,8 @@ void write_to_socket(int sock, const string& msg) {
 class CommandProcessor {
 private:
     CacheStore& cache;
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    sockaddr_in client{};
+    int sock;
+    std::mutex& mutex_store;
 
     void printHelp() {
         string help =
@@ -50,11 +51,10 @@ private:
                 write_to_socket(sock, "ERROR: SET command requires: SET <key> <value>\n");
                 return;
             }
-            if(cache.set(tokens[1], tokens[2])){
-            write_to_socket(sock, "OK: Value set\n");
-            }else{
-                write_to_socket(sock,"ERROR: The Hashmap already contains <key>");
-
+            if (cache.set(tokens[1], tokens[2])) {
+                write_to_socket(sock, "OK: Value set\n");
+            } else {
+                write_to_socket(sock, "ERROR: The Hashmap already contains <key>\n");
             }
         } else if (cmd == "GET" || cmd == "get") {
             if (tokens.size() < 2) {
@@ -80,7 +80,7 @@ private:
         } else if (cmd == "HELP" || cmd == "help") {
             printHelp();
         } else {
-            string unknown = cmd + "ERROR: Unknown command  \nType 'HELP' for available commands\n";
+            string unknown = cmd + " ERROR: Unknown command\nType 'HELP' for available commands\n";
             write_to_socket(sock, unknown);
         }
     }
@@ -92,17 +92,8 @@ private:
     }
 
 public:
-    CommandProcessor(CacheStore& store) : cache(store) {
-        sockaddr_in addr{};
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(8080);
-        addr.sin_addr.s_addr = INADDR_ANY;
-        bind(sock, (sockaddr*)&addr, sizeof(addr));
-        listen(sock, SOMAXCONN);
-
-        socklen_t client_size = sizeof(client);
-        sock = accept(sock, (sockaddr*)&client, &client_size);
-    }
+    CommandProcessor(int sock, CacheStore& store, std::mutex& mutex)
+        : sock(sock), cache(store), mutex_store(mutex) {}
 
     void run() {
         char input[1000];
@@ -114,12 +105,11 @@ public:
             if (!read_from_socket(sock, input, 1000)) {
                 break;
             }
+
             string sumair = input;
             trimNewlines(sumair);
 
-            if (sumair.length() == 0) {
-                continue;
-            }
+            if (sumair.length() == 0) continue;
 
             if (sumair == "EXIT" || sumair == "exit" || sumair == "QUIT" || sumair == "quit") {
                 write_to_socket(sock, "Goodbye\n");
@@ -133,9 +123,7 @@ public:
     }
 
     void processLine(const string& line) {
-        if (line.length() == 0) {
-            return;
-        }
+        if (line.length() == 0) return;
         Dynamic_array<string> tokens = ProtocolParser::parseCommand(line);
         processCommand(tokens);
     }

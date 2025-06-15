@@ -13,7 +13,7 @@ class Dynamic_array {
         int new_cap = (cap == 0) ? 1 : cap * 2;
         T *new_arr = new T[new_cap];
         for (int i = 0; i < len; i++) {
-            new_arr[i] = arr[i];
+            new_arr[i] = std::move(arr[i]);
         }
         delete[] arr;
         arr = new_arr;
@@ -45,6 +45,28 @@ public:
             arr = nullptr;
         }
     }
+    Dynamic_array(Dynamic_array<T>&& other) noexcept {
+    arr = other.arr;
+    len = other.len;
+    cap = other.cap;
+    other.arr = nullptr;
+    other.len = 0;
+    other.cap = 0;
+    }
+
+    Dynamic_array<T>& operator=(Dynamic_array<T>&& other) noexcept {
+    if (this != &other) {
+        delete[] arr;
+        arr = other.arr;
+        len = other.len;
+        cap = other.cap;
+        other.arr = nullptr;
+        other.len = 0;
+        other.cap = 0;
+    }
+    return *this;
+    }
+
     
     Dynamic_array(const Dynamic_array<T> &other) {
         len = other.len;
@@ -146,6 +168,12 @@ public:
             double_capacity();
         }
         arr[len++] = value;
+    }
+    void push_move(T&& value){
+        if(len + 1>cap){
+            double_capacity();
+        }
+        arr[len++] = std::move(value);
     }
     
     void pop() {
