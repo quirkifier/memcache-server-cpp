@@ -15,9 +15,7 @@ class getCommand : public baseCommand {
     string result;
 public:
     getCommand(string key) : Key(key) {}
-    
     void execute(Hashmap<string, string>& hashmap) override;
-    
     const string& getResult() const { return result; }
 };
 
@@ -30,6 +28,7 @@ public:
         : Key(key), Value(value) {}
     
   void execute(Hashmap<string, string>& hashmap) override;
+  bool isSuccessful() const { return success;}
 };
 
 class updateCommand : public baseCommand {

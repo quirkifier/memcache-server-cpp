@@ -13,7 +13,6 @@ class CacheStore {
     long long count;
     long long capacity;
     BinaryFileHandler<string, string> handler;
-
 public:
     CacheStore(const string& filename, long long capacity)
         : store(capacity, capacity)
@@ -26,7 +25,6 @@ public:
             handler.load_all(key_store,store);
         }
     }
-
     ~CacheStore() {
         handler.save_all(key_store, store);
     }
@@ -35,20 +33,18 @@ public:
         cmd->execute(store);
         string result = cmd->getResult();
         std::cout<<cmd->getResult()<<"JUST checking\n";
-
         delete cmd;
         return result;
     }
-
-    void set(const string& key, const string& value) {
+    bool set(const string& key, const string& value) {
         setCommand* cmd = new setCommand(key, value);
         cmd->execute(store);
+        bool success = cmd->isSuccessful();
         delete cmd;
         key_store.push(key);
         count++;
-
+        return success;
     }
-
     bool update(const string& key, const string& value) {
         updateCommand* cmd = new updateCommand(key, value);
         cmd->execute(store);
@@ -56,7 +52,6 @@ public:
         delete cmd;
         return success;
     }
-
     bool remove(const string& key) {
         deleteCommand* cmd = new deleteCommand(key);
         cmd->execute(store);

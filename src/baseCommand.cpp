@@ -14,8 +14,10 @@ void getCommand::execute(Hashmap<string, string>& hashmap) {
 void setCommand::execute(Hashmap<string, string>& hashmap) {
     if (hashmap.contains(Key)) {
         std::cout<<"Cannot set this value as it already contain stuff\n";
+        success = false;
     }else {
         hashmap.add(Key,Value);
+        success = true;
         std::cout << "SET " << Key << " = "<< Value << "\n";
     }
 }

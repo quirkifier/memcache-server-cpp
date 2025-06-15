@@ -50,15 +50,18 @@ private:
                 write_to_socket(sock, "ERROR: SET command requires: SET <key> <value>\n");
                 return;
             }
-            cache.set(tokens[1], tokens[2]);
+            if(cache.set(tokens[1], tokens[2])){
             write_to_socket(sock, "OK: Value set\n");
+            }else{
+                write_to_socket(sock,"ERROR: The Hashmap already contains <key>");
+
+            }
         } else if (cmd == "GET" || cmd == "get") {
             if (tokens.size() < 2) {
                 write_to_socket(sock, "ERROR: GET command requires: GET <key>\n");
                 return;
             }
             string result = cache.get(tokens[1]);
-            std::cout<<result<<"\n ";
             write_to_socket(sock, result + "\n");
         } else if (cmd == "UPDATE" || cmd == "update") {
             if (tokens.size() < 3) {
