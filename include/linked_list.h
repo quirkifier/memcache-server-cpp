@@ -1,7 +1,9 @@
 template <typename Key, typename Value> 
-/*
+/**
 *@brief A linked list node which keep on pointing to the next value until nullptr
-* */
+*
+*
+*/
 struct node {
     Key key;
     Value value;
@@ -11,7 +13,7 @@ struct node {
 };
 
 template <typename Key, typename Value> 
-/*
+/**
 *
 * @class LinkedList
 * @brief A basic implementation of a linked list soley made for hashmap but does include a copyconstructor and a overloaded operator 
@@ -21,7 +23,7 @@ class LinkedList {
     node<Key, Value> *head;
 public:
     LinkedList() : head(nullptr) {}
-    /*
+    /**
     *
     * @brief copy constructor of a linked list
     *
@@ -100,6 +102,7 @@ public:
     /*
     *
     * @brief finds the key inside a node also the gets the value by passing by reference
+    *
     *
     *
     */

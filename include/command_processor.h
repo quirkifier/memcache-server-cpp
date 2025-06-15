@@ -29,7 +29,7 @@ private:
 
     void printHelp() {
         string help =
-            "\n=== CACHE STORE COMMANDS ===\n"
+            "\n=== QUANTUM_MEMCACHE COMMAND   ===\n"
             "SET <key> <value>     - Set a key-value pair\n"
             "GET <key>             - Get value by key\n"
             "UPDATE <key> <value>  - Update existing key\n"
@@ -39,7 +39,6 @@ private:
             "============================\n\n";
         write_to_socket(sock, help);
     }
-
     void processCommand(const Dynamic_array<string>& tokens) {
         if (tokens.empty()) {
             write_to_socket(sock, "WARNING: Empty command entered\n");
@@ -51,32 +50,41 @@ private:
                 write_to_socket(sock, "ERROR: SET command requires: SET <key> <value>\n");
                 return;
             }
+        {
+                std::lock_guard<std::mutex> locking(mutex_store);
             if (cache.set(tokens[1], tokens[2])) {
                 write_to_socket(sock, "OK: Value set\n");
             } else {
                 write_to_socket(sock, "ERROR: The Hashmap already contains <key>\n");
             }
+        }
         } else if (cmd == "GET" || cmd == "get") {
             if (tokens.size() < 2) {
                 write_to_socket(sock, "ERROR: GET command requires: GET <key>\n");
                 return;
             }
+        {   std::lock_guard<std::mutex> locking(mutex_store);
             string result = cache.get(tokens[1]);
             write_to_socket(sock, result + "\n");
+        }
         } else if (cmd == "UPDATE" || cmd == "update") {
             if (tokens.size() < 3) {
                 write_to_socket(sock, "ERROR: UPDATE command requires: UPDATE <key> <value>\n");
                 return;
             }
+        {  std::lock_guard<std::mutex> locking(mutex_store);
             bool success = cache.update(tokens[1], tokens[2]);
             write_to_socket(sock, success ? "OK: Value updated\n" : "ERROR: Key not found\n");
+        }
         } else if (cmd == "DELETE" || cmd == "delete" || cmd == "DEL" || cmd == "del") {
             if (tokens.size() < 2) {
                 write_to_socket(sock, "ERROR: DELETE command requires: DELETE <key>\n");
                 return;
             }
+            {std::lock_guard<std::mutex> locking(mutex_store);
             bool success = cache.remove(tokens[1]);
             write_to_socket(sock, success ? "OK: Key deleted\n" : "ERROR: Key not found\n");
+            }
         } else if (cmd == "HELP" || cmd == "help") {
             printHelp();
         } else {
@@ -84,31 +92,25 @@ private:
             write_to_socket(sock, unknown);
         }
     }
-
     void trimNewlines(string& s) {
         while (s.length() > 0 && (s[s.length() - 1] == '\n' || s[s.length() - 1] == '\r')) {
             s = s.substr(0, s.length() - 1);
         }
     }
-
 public:
     CommandProcessor(int sock, CacheStore& store, std::mutex& mutex)
         : sock(sock), cache(store), mutex_store(mutex) {}
-
     void run() {
         char input[1000];
-        string start = "=== CACHE STORE INTERACTIVE SHELL ===\nType 'HELP' for available commands or 'EXIT' to quit\n\n";
+        string start = "=== CERN'S QUANTUM MEMCACHE ===\nType 'HELP' for available commands or 'EXIT' to quit\n\n";
         write_to_socket(sock, start);
-
         while (true) {
             memset(input, 0, sizeof(input));
             if (!read_from_socket(sock, input, 1000)) {
                 break;
             }
-
             string sumair = input;
             trimNewlines(sumair);
-
             if (sumair.length() == 0) continue;
 
             if (sumair == "EXIT" || sumair == "exit" || sumair == "QUIT" || sumair == "quit") {
@@ -116,12 +118,10 @@ public:
                 close(sock);
                 break;
             }
-
             Dynamic_array<string> tokens = ProtocolParser::parseCommand(sumair);
             processCommand(tokens);
         }
     }
-
     void processLine(const string& line) {
         if (line.length() == 0) return;
         Dynamic_array<string> tokens = ProtocolParser::parseCommand(line);

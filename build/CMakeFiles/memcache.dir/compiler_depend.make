@@ -224,6 +224,7 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o: /home/sumair/prog/memcache/src/ba
 
 CMakeFiles/memcache.dir/src/main.cpp.o: /home/sumair/prog/memcache/src/main.cpp \
   /home/sumair/prog/memcache/include/Hashmap.h \
+  /home/sumair/prog/memcache/include/Quantum_hashmap.h \
   /home/sumair/prog/memcache/include/baseCommand.h \
   /home/sumair/prog/memcache/include/binary_file_handler.h \
   /home/sumair/prog/memcache/include/cachestore.h \
@@ -735,6 +736,8 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 
 /usr/include/sys/socket.h:
 
+/usr/include/strings.h:
+
 /usr/include/c++/15.1.1/bits/streambuf_iterator.h:
 
 /usr/include/c++/15.1.1/bits/move.h:
@@ -772,8 +775,6 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /usr/include/c++/15.1.1/bits/cpp_type_traits.h:
 
 /usr/include/c++/15.1.1/bits/charconv.h:
-
-/usr/include/strings.h:
 
 /usr/include/c++/15.1.1/bits/fstream.tcc:
 
@@ -1220,6 +1221,8 @@ CMakeFiles/memcache.dir/src/baseCommand.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/include/stdint.h:
 
 /usr/include/asm-generic/socket.h:
+
+/home/sumair/prog/memcache/include/Quantum_hashmap.h:
 
 /home/sumair/prog/memcache/include/protocolParser.h:
 

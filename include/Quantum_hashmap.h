@@ -31,7 +31,7 @@ public:
     }
 
     void run() {
-        std::cout << "Server listening on port 8080...\n";
+        std::cout <<"THE SERVER HAS STARTED RUNNING \n";
 
         while (true) {
             sockaddr_in client{};
