@@ -4,11 +4,20 @@ project(memcache)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# TSan flags - both compile and link needed
+# ThreadSanitizer for detecting race conditions
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -g -O1")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=thread")
 
+# Include headers from include/
 include_directories(${CMAKE_SOURCE_DIR}/include)
-file(GLOB SOURCES "src/*.cpp")
-add_executable(memcache ${SOURCES})
+
+# Add your source files explicitly
+add_executable(memcache
+        src/main.cpp
+        src/string.cpp
+        src/baseCommand.cpp
+        # Add other .cpp files if needed
+)
+
+# Link pthread (required for threads)
 target_link_libraries(memcache pthread)

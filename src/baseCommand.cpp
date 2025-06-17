@@ -44,3 +44,21 @@ void deleteCommand::execute(Hashmap<string, string>& hashmap) {
     }
 }
 
+getCommand::getCommand(string key) : Key(key) {}
+setCommand::setCommand(string key, string value) : Key(key), Value(value), success(false) {}
+updateCommand::updateCommand(string key, string value) : Key(key), Value(value), success(false) {}
+deleteCommand::deleteCommand(string key) : Key(key), success(false) {}
+
+const string& getCommand::getResult() const {
+    return result;
+}
+bool setCommand::isSuccessful() const {
+    return success;
+}
+bool updateCommand::isSuccessful() const {
+    return success;
+}
+bool deleteCommand::isSuccessful() const {
+    return success;
+}
+
