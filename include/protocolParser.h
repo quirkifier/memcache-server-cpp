@@ -2,9 +2,19 @@
 #define PROTOCOL_PARSER_H
 #include "dynamic-array.h"
 #include "sumairString.h"
-
+/**
+*
+* @class ProtocolParser
+*
+*/
 class ProtocolParser {
 public:
+    /**
+    *@brief Takes input a string and then turns it into tokens to use
+    *@param input The string that will be tokenized
+    *@return tokens tokens
+    *
+    */
     static Dynamic_array<string> parseCommand(const string& input) {
         Dynamic_array<string> tokens;
         
@@ -39,46 +49,6 @@ public:
         return tokens;
     }
     
-    static Dynamic_array<string> parseCommandWithQuotes(const string& input) {
-        Dynamic_array<string> tokens;
-        
-        if (input.length()==0) {
-            return tokens;
-        }
-        
-        int len = input.length();
-        int i = 0;
-        
-        while (i < len) {
-            while (i < len && input[i] == ' ') {
-                i++;
-            }
-            
-            if (i >= len) break;
-            
-            string token;
-            
-            if (input[i] == '"') {
-                i++;
-                while (i < len && input[i] != '"') {
-                    token += input[i];
-                    i++;
-                }
-                if (i < len) i++; 
-            } else {
-                while (i < len && input[i] != ' ') {
-                    token += input[i];
-                    i++;
-                }
-            }
-            
-            if (token.length() == 0) {
-                tokens.push(token);
-            }
-        }
-        
-        return tokens;
-    }
 };
 
 #endif // PROTOCOL_PARSER_H
