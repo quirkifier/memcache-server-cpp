@@ -45,37 +45,37 @@ One advantage of this is that we can manipulate the hashmap for our use—for ex
 ## ✅ Implementation Checklist
 
 ### 🔹 Core Infrastructure
-- [ ] Define command interface: `get`, `set`, `update`, `del`, `exit`.
-- [ ] Parse client commands with basic tokenization.
+- [x] Define command interface: `get`, `set`, `update`, `del`, `exit`.
+- [x] Parse client commands with basic tokenization.
 
 ### 🔹 Custom Hashmap
-- [ ] Implement internal `Node` struct (key, value, next pointer).
-- [ ] Implement `HashMap` class with:
-    - [ ] Custom hash function.
-    - [ ] `insert()` / `set()` method.
-    - [ ] `get()` method.
-    - [ ] `update()` method.
-    - [ ] `delete()` method.
-    - [ ] Collision handling using separate chaining.
-- [ ] Add `std::mutex` for thread-safe access:
+- [x] Implement internal `Node` struct (key, value, next pointer).
+- [x] Implement `HashMap` class with:
+    - [x] Custom hash function.
+    - [x] `insert()` / `set()` method.
+    - [x] `get()` method.
+    - [x] `update()` method.
+    - [x] `delete()` method.
+    - [x] Collision handling using separate chaining.
+- [x] Add `std::mutex` for thread-safe access:
 ### 🔹 Multithreading Support
-- [ ] Accept multiple clients using `std::thread`.
-- [ ] Handle each client in a dedicated worker thread.
-- [ ] Ensure thread-safe hashmap operations.
-- [ ] Implement proper thread cleanup (join/detach).
+- [x] Accept multiple clients using `std::thread`.
+- [x] Handle each client in a dedicated worker thread.
+- [x] Ensure thread-safe hashmap operations.
+- [x] Implement proper thread cleanup (join/detach).
 - 
 - ### 🔹 Networking Layer
-- [ ] Create socket server using:
-    - [ ] Telnet-compatible raw TCP sockets, or
+- [x] Create socket server using:
+    - [x] Telnet-compatible raw TCP sockets, or
     - [ ] Boost.Asio (optional).
-- [ ] Accept client connections in a loop.
-- [ ] Process commands sent over TCP.
-- [ ] Handle graceful disconnect and client errors.
+- [x] Accept client connections in a loop.
+- [x] Process commands sent over TCP.
+- [x] Handle graceful disconnect and client errors.
 
 ### 🔹 File
-- [ ] Load key value data from a file at startup.
-  - [ ] A Logging file for error
-- [ ] Write updated data back to file on:
-    - [ ] Key updates
-    - [ ] Program exit
-- [ ] Support simple serialization/deserialization.
+- [x] Load key value data from a file at startup.
+  - [x] A Logging file for error
+- [x] Write updated data back to file on:
+    - [x] Key updates
+    - [x] Program exit
+- [x] Support simple serialization/deserialization.
